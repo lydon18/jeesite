@@ -1,5 +1,5 @@
 ## 登录
-POST http://10.8.1.141:80/jeesite/a/login
+**POST** http://10.8.1.141:80/jeesite/a/login
 ### request 
 #### header 
 Content-Type:application/x-www-form-urlencoded
@@ -16,7 +16,7 @@ username=thinkgem&password=admin
 }
 ```
 ## 退出
-GET/POST  http://10.8.1.141:80/jeesite/a/logout
+**GET/POST** http://10.8.1.141:80/jeesite/a/logout
 ### response 
 ```
 {
@@ -26,7 +26,7 @@ GET/POST  http://10.8.1.141:80/jeesite/a/logout
 ```
 
 ## 查询单表列表
-GET  http://10.8.1.141:80/jeesite/a/tmsPolicys
+**GET** http://10.8.1.141:80/jeesite/a/tmsPolicys
 ### request
 Accept:application/json    
 Content-Type:application/json;charset=utf-8
@@ -53,7 +53,7 @@ Content-Type:application/json;charset=utf-8
 } ]
 
 ## 查询单个实体
-GET  http://10.8.1.141:80/jeesite/a/tmsPolicys/{id}
+**GET**  http://10.8.1.141:80/jeesite/a/tmsPolicys/{id}
 ### request
 #### header
 Accept:application/json    
@@ -70,16 +70,20 @@ Content-Type:application/json;charset=utf-8
 ```
 
 ## 增加或修改
-POST http://10.8.1.141:80/jeesite/a/tmsPolicys
+**POST** http://10.8.1.141:80/jeesite/a/tmsPolicys
 ### request
 #### header
 Accept:application/json    
 Content-Type:application/json;charset=utf-8
 #### body 
 ##### 增加
-{'name':'策略11'}
+```
+{"name":"策略11"}
+```
 ##### 修改
-{'name':'策略11','id':'a0d2d96bef0d4948be284215a113847a'}
+```
+{"name":"策略11","id":"a0d2d96bef0d4948be284215a113847a"}
+```
 ### response 
 ```
 {
@@ -92,7 +96,7 @@ Content-Type:application/json;charset=utf-8
 ```
 
 ## 分页查询
-GET POST http://10.8.1.141:80/jeesite/a/tmsPolicys/page
+**GET** http://10.8.1.141:80/jeesite/a/tmsPolicys/page
 ### request
 #### header
 Accept:application/json    
@@ -128,7 +132,7 @@ Content-Type:application/json;charset=utf-8
 }
 ```
 ## 删除
-DELETE  POST http://10.8.1.141:80/jeesite/a/tmsPolicys/{id}
+**DELETE**   http://10.8.1.141:80/jeesite/a/tmsPolicys/{id}
 ### request
 #### header
 Accept:application/json    
