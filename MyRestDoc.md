@@ -38,6 +38,7 @@ Content-Type:application/json;charset=utf-8
 }
 ```
 ### response 
+```
 [ {
   "id" : "36c1200ec44944fe834964493a3c5c07",
   "isNewRecord" : false,
@@ -51,6 +52,7 @@ Content-Type:application/json;charset=utf-8
   "updateDate" : "2016-11-08 10:25:19",
   "name" : "策略1"
 } ]
+```
 
 ## 查询单个实体
 **GET**  http://10.8.1.141:80/jeesite/a/tmsPolicys/{id}
