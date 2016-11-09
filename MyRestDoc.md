@@ -25,29 +25,6 @@ username=thinkgem&password=admin
 }
 ```
 
-## 查询单表列表
-**GET** http://10.8.1.141:80/jeesite/a/tmsPolicys
-### request
-Accept:application/json    
-Content-Type:application/json;charset=utf-8
-#### body 
-```
-{
-  "orderBy":"xxx",
-  "name":"xxx"
-}
-```
-### response 
-```
-[ {
-  "id" : "36c1200ec44944fe834964493a3c5c07",
-  "name" : "策略1"
-}, {
-  "id" : "0431e9d05dee4a96b8e74f57231bccd8",
-  "name" : "策略1"
-} ]
-```
-
 ## 查询单个实体
 **GET**  http://10.8.1.141:80/jeesite/a/tmsPolicys/{id}
 ### request
@@ -92,12 +69,9 @@ Content-Type:application/json;charset=utf-8
 ```
 
 ## 分页查询
-**GET** http://10.8.1.141:80/jeesite/a/tmsPolicys/page
+**GET** http://10.8.1.141:80/jeesite/a/tmsPolicys
 ### request
-#### header
-Accept:application/json    
-Content-Type:application/json;charset=utf-8
-#### body 
+[param]
 ```
 {
   "pageNo":1,
@@ -105,6 +79,11 @@ Content-Type:application/json;charset=utf-8
   "name":"xxx",
   "orderBy":"xxx",
 }
+#### header
+Accept:application/json    
+Content-Type:application/json;charset=utf-8
+#### body 
+
 ```
 ### response
 ```
