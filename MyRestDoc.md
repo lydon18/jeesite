@@ -41,15 +41,9 @@ Content-Type:application/json;charset=utf-8
 ```
 [ {
   "id" : "36c1200ec44944fe834964493a3c5c07",
-  "isNewRecord" : false,
-  "createDate" : "2016-11-08 11:02:52",
-  "updateDate" : "2016-11-08 11:02:52",
   "name" : "策略1"
 }, {
   "id" : "0431e9d05dee4a96b8e74f57231bccd8",
-  "isNewRecord" : false,
-  "createDate" : "2016-11-08 10:25:19",
-  "updateDate" : "2016-11-08 10:25:19",
   "name" : "策略1"
 } ]
 ```
