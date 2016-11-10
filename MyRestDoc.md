@@ -110,9 +110,7 @@ Content-Type:application/json;charset=utf-8
     }, {
       "id" : "0431e9d05dee4a96b8e74f57231bccd8",
       "name" : "策略1"
-    } ],
-    "maxResults" : 30,
-    "firstResult" : 0
+    } ]
   }
 }
 ```
