@@ -1,3 +1,9 @@
+## 是否登录
+**GET** http://10.8.1.141:80/jeesite/a/isLogin
+### response 
+```
+{"status":0,"message":"未登录"}
+```
 ## 登录
 **POST** http://10.8.1.141:80/jeesite/a/login
 ### request 
@@ -7,12 +13,15 @@ Content-Type:application/x-www-form-urlencoded
 username=thinkgem&password=admin
 ### response 
 ```
-{
-  "id": "1",
-  "loginName": "thinkgem",
-  "name": "系统管理员",
-  "mobileLogin": true,
-  "sessionid": "2449f0bd31d54f2fa3f8965e268cf46b"
+{ "status":1,
+  "message":"登录成功",
+  "data":{
+    "id": "1",
+    "loginName": "thinkgem",
+    "name": "系统管理员",
+    "mobileLogin": true,
+    "sessionid": "2449f0bd31d54f2fa3f8965e268cf46b"
+    }
 }
 ```
 ## 退出
