@@ -13,7 +13,7 @@ Content-Type:application/x-www-form-urlencoded
 username=thinkgem&password=admin
 ### response 
 ```
-{ "status":1,
+{ "status":0,
   "message":"登录成功",
   "data":{
     "id": "1",
@@ -29,7 +29,7 @@ username=thinkgem&password=admin
 ### response 
 ```
 {
-  "status":1,
+  "status":0,
   "message":"退出登录"
 }
 ```
@@ -43,7 +43,7 @@ Content-Type:application/json;charset=utf-8
 ### response 
 ```
 {
-  "status" : 1,
+  "status" : 0,
   "data" : {
     "id" : "0431e9d05dee4a96b8e74f57231bccd8",
     "name" : "策略1"
@@ -69,7 +69,7 @@ Content-Type:application/json;charset=utf-8
 ### response 
 ```
 {
-  "status" : 1,
+  "status" : 0,
   "data" : {
     "id" : "0431e9d05dee4a96b8e74f57231bccd8",
     "name" : "策略1"
@@ -98,7 +98,7 @@ Content-Type:application/json;charset=utf-8
 ### response
 ```
 {
-  "status" : 1,
+  "status" : 0,
   "data" : {
     "pageNo" : 1,
     "pageSize" : 30,
@@ -123,6 +123,6 @@ Content-Type:application/json;charset=utf-8
 ### response
 ```
 {
-  "status":1,
+  "status":0,
   "message":"删除成功"
 }
