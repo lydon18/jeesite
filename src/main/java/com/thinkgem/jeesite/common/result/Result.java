@@ -1,8 +1,8 @@
 package com.thinkgem.jeesite.common.result;
 
 public class Result<T> {
-	public static final int SUCCESS = 1;
-	public static final int ERROR = 0;
+	public static final int SUCCESS = 0;
+	public static final int ERROR = 1;
 	/** 响应状态 */
 	private int status;
 	/** 响应消息 */
