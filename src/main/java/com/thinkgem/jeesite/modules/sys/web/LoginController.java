@@ -45,8 +45,8 @@ public class LoginController extends BaseController{
 	/**
 	 * 管理登录
 	 */
-	@RequestMapping(value = "${adminPath}/login", method = RequestMethod.GET)
-	public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
+//	@RequestMapping(value = "${adminPath}/login", method = RequestMethod.GET)
+	public String login(HttpServletRequest request, HttpServletResponse res, Model model) {
 		Principal principal = UserUtils.getPrincipal();
 
 //		// 默认页签模式
@@ -59,13 +59,24 @@ public class LoginController extends BaseController{
 			logger.debug("login, active session size: {}", sessionDAO.getActiveSessions(false).size());
 		}
 		
+		HttpServletResponse response = (HttpServletResponse) res;  
+		
 		// 如果已登录，再次访问主页，则退出原账号。
 		if (Global.TRUE.equals(Global.getConfig("notAllowRefreshIndex"))){
 			CookieUtils.setCookie(response, "LOGINED", "false");
 		}
-		
+		if("XMLHttpRequest".equalsIgnoreCase(((HttpServletRequest) request)
+                .getHeader("X-Requested-With"))){
+			if(null != principal){
+				return renderString(response, principal);
+			}
+			return renderString(response, "{success:false,message:未登录.}");
+		}
 		// 如果已经登录，则跳转到管理首页
-		if(principal != null && !principal.isMobileLogin()){
+		if(null != principal ){
+			if(principal.isMobileLogin() ){
+				return renderString(response, principal);
+			}
 			return "redirect:" + adminPath;
 		}
 //		String view;
@@ -80,13 +91,14 @@ public class LoginController extends BaseController{
 	/**
 	 * 登录失败，真正登录的POST请求由Filter完成
 	 */
-	@RequestMapping(value = "${adminPath}/login", method = RequestMethod.POST)
-	public String loginFail(HttpServletRequest request, HttpServletResponse response, Model model) {
+//	@RequestMapping(value = "${adminPath}/login", method = RequestMethod.POST)
+	public String loginFail(HttpServletRequest request, HttpServletResponse res, Model model) {
 		Principal principal = UserUtils.getPrincipal();
 		
 		// 如果已经登录，则跳转到管理首页
 		if(principal != null){
-			return "redirect:" + adminPath;
+//			return "redirect:" + adminPath;
+			return renderString(res, principal);
 		}
 
 		String username = WebUtils.getCleanParam(request, FormAuthenticationFilter.DEFAULT_USERNAME_PARAM);
@@ -118,8 +130,11 @@ public class LoginController extends BaseController{
 		// 验证失败清空验证码
 		request.getSession().setAttribute(ValidateCodeServlet.VALIDATE_CODE, IdGen.uuid());
 		
+		HttpServletResponse response = (HttpServletResponse) res;  
+		
 		// 如果是手机登录，则返回JSON字符串
-		if (mobile){
+		if (mobile || "XMLHttpRequest".equalsIgnoreCase(((HttpServletRequest) request)
+                .getHeader("X-Requested-With"))){
 	        return renderString(response, model);
 		}
 		
@@ -130,8 +145,8 @@ public class LoginController extends BaseController{
 	 * 登录成功，进入管理首页
 	 */
 	@RequiresPermissions("user")
-	@RequestMapping(value = "${adminPath}")
-	public String index(HttpServletRequest request, HttpServletResponse response) {
+//	@RequestMapping(value = "${adminPath}")
+	public String index(HttpServletRequest request, HttpServletResponse res) {
 		Principal principal = UserUtils.getPrincipal();
 
 		// 登录成功后，验证码计算器清零
@@ -140,7 +155,7 @@ public class LoginController extends BaseController{
 		if (logger.isDebugEnabled()){
 			logger.debug("show index, active session size: {}", sessionDAO.getActiveSessions(false).size());
 		}
-		
+		HttpServletResponse response = (HttpServletResponse) res;  
 		// 如果已登录，再次访问主页，则退出原账号。
 		if (Global.TRUE.equals(Global.getConfig("notAllowRefreshIndex"))){
 			String logined = CookieUtils.getCookie(request, "LOGINED");
@@ -148,12 +163,17 @@ public class LoginController extends BaseController{
 				CookieUtils.setCookie(response, "LOGINED", "true");
 			}else if (StringUtils.equals(logined, "true")){
 				UserUtils.getSubject().logout();
+				if("XMLHttpRequest".equalsIgnoreCase(((HttpServletRequest) request)
+		                .getHeader("X-Requested-With"))){
+					return renderString(response, "{success:false,message:未登录.}");
+				}
 				return "redirect:" + adminPath + "/login";
 			}
 		}
 		
 		// 如果是手机登录，则返回JSON字符串
-		if (principal.isMobileLogin()){
+		if (principal.isMobileLogin()||"XMLHttpRequest".equalsIgnoreCase(((HttpServletRequest) request)
+                .getHeader("X-Requested-With")) ){
 			if (request.getParameter("login") != null){
 				return renderString(response, principal);
 			}
